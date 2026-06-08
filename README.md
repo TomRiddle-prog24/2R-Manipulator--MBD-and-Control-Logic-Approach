@@ -21,8 +21,13 @@ ilt.rcParams['animation.embed_limit'] = 50.0          #For the animation to be f
 (*In the first commit, the forward Kinematics (FK) of the robot has been built*)
 Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis** that **determines** the position of the **End-Effector (EF)** for a given set of Joint angles. Since the robot's DOF=2, its obvious that the Joint angles (Defined $q_1, q_2$) is *independent* of each other. The definitions of the link lengths ($l_1, l_2$) has been attached here. 
 
-<img width="696" height="460" alt="image" src="https://github.com/user-attachments/assets/3bd69b3b-fc0f-4b2e-bcb4-1913ff1dcd24" />
-*Fig-1: Description of the problem modelled for a FK Analysis*
+<div align="center">
+  <figure>
+    <!-- Replace 'image.png' with your actual file path or URL -->
+    <img src="https://github.com/user-attachments/assets/3bd69b3b-fc0f-4b2e-bcb4-1913ff1dcd24"  alt="Two-link robotic manipulator mechanism" width="550">
+    <figcaption><i>Fig-1: Description of the problem modeled for a FK (Forward Kinematics) Analysis</i></figcaption>
+  </figure>
+</div>
 
 As of now, currently the FK MBD Solver, solves for the following conditions: 
 $$
