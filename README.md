@@ -1,2 +1,44 @@
 # 2R-Manipulator--MBD-and-Control-Logic-Approach
-This project showcases various elements in the design of a 2R manipulator, from systems design to the control logic and manipulation. 
+# Introduction- Dynamics
+A 2R Manipulator is a **Planar Robotic Manipulator** containing *2 DOF*. The modelling is purely done using Python Symbolics and Numerical computations. This project showcases various elements in the design of a 2R manipulator, from its Kinematics, Dynamics and Systems Design to the control logic and manipulation. Additionally, a **Multi-body-dynamics** approach has been chosen **over the traditional approaches** (Such as D-H (Denavit-Hartenberg Mapping) and Parameters)). A *Computirized* derivation has been encouraged and appreciated in this project (Formerly, most projects focus on **Hand Derivations for the entire mechanism** earlier and treating the program built in MATLAB or Python or equivalent programming languages just as a calculator/solver. One of the major goals of the project is to enhance the Symbolic Derivations performed purely by the MBD programs in this project). 
+
+# Required Modules 
+Before running the simulation, ensure that the following modules have been set up. 
+```python
+import sympy as sm     
+import sympy.physics.mechanics as me                   #For Symbolic computations
+import numpy as np 
+import matplotlib.pyplot as plt
+me.init_vprinting(use_latex='mathjax') 
+import scipy.integrate as sp
+import scipy.optimize as so
+from matplotlib.animation import FuncAnimation          #For Visualization of the mechanism
+from IPython.display import HTML
+import matplotlib as ilt
+ilt.rcParams['animation.embed_limit'] = 50.0          #For the animation to be fit the entire time steps for a memory of 50MB 
+```
+# C1: Forward Kinematics (FK) 
+(*In the first commit, the forward Kinematics (FK) of the robot has been built*)
+Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis** that **determines** the position of the **End-Effector (EF)** for a given set of Joint angles. Since the robot's DOF=2, its obvious that the Joint angles (Defined $q_1, q_2$) is *independent* of each other. The definitions of the link lengths ($l_1, l_2$) has been attached here. 
+<img width="696" height="460" alt="image" src="https://github.com/user-attachments/assets/3bd69b3b-fc0f-4b2e-bcb4-1913ff1dcd24" />*Fig-1: Description of the problem modelled for a FK Analysis*
+
+As of now, currently the FK MBD Solver, solves for the following conditions: 
+$$
+q_1 \in [0, 2\pi]
+q_2= \frac{\pi}{3} \text{fixed angle}
+{}^N\omega_A=\dot{q1}\hat{n}_z=\frac{2\pi}{20} \text{in rad/s}
+{}^N\omega_B=\dot{q2}\hat{n}_z=0
+l_1=1m 
+l_2=1.2m
+$$
+where: 
+ - $q_1$ refers to the angle between link A and the base frame (X-axis) "N"
+ - $q_2$: angle between Links A and B
+The results of the FK have been presented as well for the first commit.
+
+# Pending Work
+- Inverse Kinematics (IK)
+- Dynamics of the mechanism
+- Integration with the hardware 
+
+
