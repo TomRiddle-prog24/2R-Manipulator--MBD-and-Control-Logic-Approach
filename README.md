@@ -27,14 +27,15 @@ Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis
   <blockquote><b>Fig. 1</b> — <i>Description of the problem modeled for an FK Analysis.</i></blockquote>
 </div>
 
-As of now, currently the FK MBD Solver, solves for the following conditions: 
-```math
-\(\begin{aligned} q_1 &\in [0, 2\pi] \\ q_2 &= \frac{\pi}{3} \quad \text{fixed angle} \\ ^{N}\omega_A &= \dot{q}_1\hat{n}_z = \frac{2\pi}{20} \quad \text{in rad/s} \\ ^{N}\omega_B &= \dot{q}_2\hat{n}_z = 0 \\ l_1 &= 1\text{m} \\ l_2 &= 1.2\text{m} \end{aligned} \%\%\)MAGIT_PARSER_PROTECT%%```
-
-where: 
- - $q_1$ refers to the angle between link A and the base frame (X-axis) "N"
- - $q_2$: angle between Links A and B
-```
+As of now, currently the FK MBD Solver, solves for the following conditions:\
+$$\begin{aligned}
+q_1 \in [0, 2\pi] \\
+q_2 = \frac{\pi}{3} \quad \text{fixed angle} \\
+^{N}\omega_A = \dot{q}_1\hat{n}_z = \frac{2\pi}{20} \quad \text{in rad/s} \\
+^{N}\omega_B = \dot{q}_2\hat{n}_z = 0 \\
+l_1 = 1\text{m} \\
+l_2 = 1.2\text{m}
+\end{aligned}$$
 The results of the FK have been presented as well for the first commit.
 
 # Pending Work
