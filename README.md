@@ -26,12 +26,12 @@ Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis
 
 As of now, currently the FK MBD Solver, solves for the following conditions: 
 $$
-q_1 \in [0, 2\pi]
-q_2= \frac{\pi}{3} \text{fixed angle}
-{}^N\omega_A=\dot{q1}\hat{n}_z=\frac{2\pi}{20} \text{in rad/s}
-{}^N\omega_B=\dot{q2}\hat{n}_z=0
-l_1=1m 
-l_2=1.2m
+q_1 \in [0, 2\pi] \\
+q_2= \frac{\pi}{3} \text{fixed angle} \\
+{}^N\omega_A=\dot{q1}\hat{n}_z=\frac{2\pi}{20} \text{in rad/s} \\
+{}^N\omega_B=\dot{q2}\hat{n}_z=0 \\
+l_1=1m \\
+l_2=1.2m \\
 $$
 where: 
  - $q_1$ refers to the angle between link A and the base frame (X-axis) "N"
