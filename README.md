@@ -22,21 +22,19 @@ ilt.rcParams['animation.embed_limit'] = 50.0          #For the animation to be f
 Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis** that **determines** the position of the **End-Effector (EF)** for a given set of Joint angles. Since the robot's DOF=2, its obvious that the Joint angles (Defined $q_1, q_2$) is *independent* of each other. The definitions of the link lengths ($l_1, l_2$) has been attached here. 
 
 <div align="center">
-  <figure>
-    <!-- Replace 'image.png' with your actual file path or URL -->
     <img src="https://github.com/user-attachments/assets/3bd69b3b-fc0f-4b2e-bcb4-1913ff1dcd24"  alt="Two-link robotic manipulator mechanism" width="550">
-    <figcaption><i>Fig-1: Description of the problem modeled for a FK (Forward Kinematics) Analysis</i></figcaption>
-  </figure>
+  <br>
+  <blockquote><b>Fig. 1</b> — <i>Description of the problem modeled for an FK Analysis.</i></blockquote>
 </div>
 
 As of now, currently the FK MBD Solver, solves for the following conditions: 
 $$
 q_1 \in [0, 2\pi] \\
-q_2= \frac{\pi}{3} \text{fixed angle} \\
-{}^N\omega_A=\dot{q1}\hat{n}_z=\frac{2\pi}{20} \text{in rad/s} \\
-{}^N\omega_B=\dot{q2}\hat{n}_z=0 \\
-l_1=1m \\
-l_2=1.2m \\
+q_2 = \frac{\pi}{3} \quad \text{fixed angle} \\
+{}^N\omega_A = \dot{q}_1\hat{n}_z = \frac{2\pi}{20} \quad \text{in rad/s} \\
+{}^N\omega_B = \dot{q}_2\hat{n}_z = 0 \\
+l_1 = 1\text{m} \\
+l_2 = 1.2\text{m}
 $$
 where: 
  - $q_1$ refers to the angle between link A and the base frame (X-axis) "N"
