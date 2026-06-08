@@ -28,6 +28,8 @@ Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis
 </div>
 
 As of now, currently the FK MBD Solver, solves for the following conditions:
+As of now, currently the FK MBD Solver, solves for the following conditions:
+
 $$
 \begin{aligned}
 q_1 &\in [0, 2\pi] \\
@@ -38,6 +40,7 @@ l_1 &= 1\text{m} \\
 l_2 &= 1.2\text{m}
 \end{aligned}
 $$
+
 The results of the FK have been presented as well for the first commit.
 
 # Pending Work
