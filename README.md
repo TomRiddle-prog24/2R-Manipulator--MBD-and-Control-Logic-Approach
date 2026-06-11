@@ -77,15 +77,20 @@ Now, if we use the same technique for some point say $(x_e, y_e)=(3,-1)$, the so
 $$
 \begin{aligned}
 l_1+l_2 &= \text{max end effector position} &= 1+1.2 &= 2.2m
+\end{aligned}
 $$
+
 And so, physically it'd be illogical for the links to reach anywhere beyond it. So the limits of $x_e, y_e$ can be determined as:
 $$
+\begin{aligned}
 \sqrt{x_e^2+y_e^2} &= 2.2 &= \phi(x,y)
+\end{aligned}
 $$
 
 So, its obvious that for the End-Effector to perform some action, it should be well within the locii as described by the function $\phi$. Long story short, the values of $x_e$, $y_e$ have to be such that:  
 
 $$
+\begin{aligned}
 x_e^2+y_e^2 &\leq (l_1+l_2)^2
 \end{aligned}
 $$
@@ -96,10 +101,14 @@ The results from the P2P IK have also been documented.
 
 Say a robot is confined to a specific policy, say to move along a Straight line or move along a specific curved path or say a Velocity constraint is been **effected** with the **End Effector**, in all these cases, various constraints would have to be effected in the Kinematics Equations. Mind that, Kinematics comprises of both **Position Analysis** and **Velocity Analysis** (and further analysis of derived Kinematics Quantities such as Jerks, Accelerations). 
 ## Trajectory Planning/Tracking 
-Here, for our model, we have used a set of points which would form the locii of a line which can be mathematically be defined as: 
+Here, for our model, we have used a set of points which would form the locii of a line which can be mathematically be defined as:
+
 $$
+\begin{aligned}
 y&=\kappa&=5m 
+\end{aligned}
 $$
+
 Trajectory doesnt have to be required as a line alone. It can be any complex curve (Say a Bezier Curve or a Hermite Curve) etc...
 ## Degrees of Freedom 
 
