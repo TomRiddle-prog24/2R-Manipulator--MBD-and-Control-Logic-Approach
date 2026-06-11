@@ -30,8 +30,8 @@ Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis
 The Equations in question are: 
 $$
 r_e(q_1, q_2)=\begin{bmatrix}
-l_{1}\cos{\left(q_{1}\right)}+l_{2}\left(-\sin{\left(q_{1}\right)} \sin{\left(q_{2}\right)}+\cos{\left(q_{1}\right)}\cos{\left(q_{2}\right)}\right)\\
-l_{1}\sin{\left(q_{1}\right)}+l_{2} \left(\sin{\left(q_{1}\right)}\cos{\left(q_{2}\right)}+\sin{\left(q_{2}\right)}\cos{\left(q_{1}\right)}\right)
+l_{1}\cos{\left(q_{1}\right)}+l_{2}\left(-\sin{\left(q_{1}\right)}\sin{\left(q_{2}\right)}+\cos{\left(q_{1}\right)}\cos{\left(q_{2}\right)}\right)\\
+l_{1}\sin{\left(q_{1}\right)}+l_{2}\left(\sin{\left(q_{1}\right)}\cos{\left(q_{2}\right)}+\sin{\left(q_{2}\right)}\cos{\left(q_{1}\right)}\right)
 \end{bmatrix}=\begin{bmatrix}
                                     x_e\\
                                     y_e
@@ -71,17 +71,17 @@ Interestingly, we are **bypassing** the calclations of Jacobians **Explicitly** 
 
 Now, if we use the same technique for some point say $(x_e, y_e)=(3,-1)$, the solver would inherently **fail**. Because the **max end effector position** when both link-1, link-2 are aligned (i.e when $q_2=0$) is: 
 $$
-l_1+l_2=\text{max end effector position}=1+1.2=2.2m
+l_1+l_2&=\text{max end effector position}&=1+1.2=2.2m
 $$
 And so, physically it'd be illogical for the links to reach anywhere beyond it. So the limits of $x_e, y_e$ can be determined as:
 $$
-\sqrt{x_e^2+y_e^2}=2.2=\phi(x,y)
+\sqrt{x_e^2+y_e^2}&=2.2&=\phi(x,y)
 $$
 So, its obvious that for the End-Effector to perform some action, it should be well within the locii as described by the function $\phi$. Long story short, the values of $x_e$, $y_e$ have to be such that: 
 $$
-x_e^2+y_e^2 \leq (l_1+l_2)^2
+x_e^2+y_e^2&\leq(l_1+l_2)^2
 $$
-The results from the P2P IK is shown below: 
+The results from the P2P IK have also been documented. 
 
 # C3: Inverse Kinematics (IK) (With Trajectory Planning)
 
@@ -89,19 +89,30 @@ Say a robot is confined to a specific policy, say to move along a Straight line 
 ## Trajectory Planning/Tracking 
 Here, for our model, we have used a set of points which would form the locii of a line which can be mathematically be defined as: 
 $$
-y=\kappa=5m 
+y&=\kappa&=5m 
 $$
 Trajectory doesnt have to be required as a line alone. It can be any complex curve (Say a Bezier Curve or a Hermite Curve) etc...
 ## Degrees of Freedom 
 
 Now, in a normal 2R manipulator, DOF=2. Its obvious. However, in this case, when we constrain our 2R Manipulator's end Effector to move along a specific direction (here along -ve x-axis), we introduce **1 Velocity Constraint**. Which is: 
 $$
-\vec{v}_e^N.\hat{n}_y=0
+\vec{v}_e^N.\hat{n}_y&=0
 $$  
 Hence the DOF of the mechanism **Reduces to 1**. Hence for our control/generalized speeds to be solved for, we introduce $\dot{q_1}$ as our independent variable. This also means, the **end effector's velocity magnitude CANNOT** be of our choice. Only the motion path is under our control.  
 An alternate way of addressing is, I can set my $\vec{v}_e^N$. But that would mean, $\dot{q}_1$ and $\dot{q}_2$ now are **DEPENDANT** on $\vec{v}_e^N$. So, here we choose the 2nd choice of fixing, Ve. Hence we formulate this for our robotic system. The equations and Numerical Procedure have been well explained in the notebook. 
 
 ## Results of the Trajectory planning: 
+<div align="center">
+  <img width="862" height="833" alt="image" src="https://github.com/user-attachments/assets/ac45ccd3-3706-455d-91a4-52c205e825d6" alt="Two-link robotic manipulator mechanism" width="550">
+  <br>
+  <blockquote><b>Fig. 1</b> — <i>Results from the Trajectory Plannning.</i></blockquote>
+</div>  
+
+<div align="center">
+  <img width="957" height="872" alt="image" src="https://github.com/user-attachments/assets/e745358f-7002-45ff-8be5-4ade60ecd738" />
+  <br>
+  <blockquote><b>Fig. 1</b> — <i>Visualization of the Trajectory Planning.</i></blockquote>
+</div>
 
 >[NOTE]
 >For this analysis, we have changed the link lengths, so as to not involve too much of Singularities and other issues due to Singularities. 
