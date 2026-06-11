@@ -115,7 +115,7 @@ Trajectory doesnt have to be required as a line alone. It can be any complex cur
 Now, in a normal 2R manipulator, DOF=2. Its obvious. However, in this case, when we constrain our 2R Manipulator's end Effector to move along a specific direction (here along -ve x-axis), we introduce **1 Velocity Constraint**. Which is:
 
 $$
-\begin{alligned}
+\begin{aligned}
 \vec{v}_e^N.\hat{n}_y &= 0
 \end{aligned}
 $$
