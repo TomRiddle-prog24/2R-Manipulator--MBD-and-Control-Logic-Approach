@@ -97,9 +97,9 @@ $$
 
 The results from the P2P IK have also been documented. 
 
-# C3: Inverse Kinematics (IK) (With Trajectory Planning)
+# C3: Inverse Kinematics (IK) (With Trajectory Tracking)
 
-Say a robot is confined to a specific policy, say to move along a Straight line or move along a specific curved path or say a Velocity constraint is been **effected** with the **End Effector**, in all these cases, various constraints would have to be effected in the Kinematics Equations. Mind that, Kinematics comprises of both **Position Analysis** and **Velocity Analysis** (and further analysis of derived Kinematics Quantities such as Jerks, Accelerations). 
+Say a robot is confined to a specific policy, say to move along a Straight line or move along a specific curved path or say a Velocity constraint is been **effected** with the **End Effector**, in all these cases, various constraints would have to be effected in the Kinematics Equations. Mind that, Kinematics comprises of both **Position Analysis** and **Velocity Analysis** (and further analysis of derived Kinematics Quantities such as Jerks, Accelerations). Hence the **Path of the end effector** can be affected by other Kinematic Quantities as well. 
 ## Trajectory Planning/Tracking 
 Here, for our model, we have used a set of points which would form the locii of a line which can be mathematically be defined as:
 
