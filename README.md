@@ -1,6 +1,9 @@
 # 2R-Manipulator--MBD-and-Control-Logic-Approach
 # Introduction- Dynamics
-A 2R Manipulator is a **Planar Robotic Manipulator** containing *2 DOF*. The modelling is purely done using Python Symbolics and Numerical computations. This project showcases various elements in the design of a 2R manipulator, from its Kinematics, Dynamics and Systems Design to the control logic and manipulation. Additionally, a **Multi-body-dynamics** approach has been chosen **over the traditional approaches** (Such as D-H (Denavit-Hartenberg Mapping) and Parameters)). A *Computirized* derivation has been encouraged and appreciated in this project (Formerly, most projects focus on **Hand Derivations for the entire mechanism** earlier and treating the program built in MATLAB or Python or equivalent programming languages just as a calculator/solver. One of the major goals of the project is to enhance the Symbolic Derivations performed purely by the MBD programs in this project). 
+A 2R Manipulator is a **Planar Robotic Manipulator** containing *2 DOF*. The modelling is purely done using Python Symbolics and Numerical computations. This project showcases various elements in the design of a 2R manipulator, from its Kinematics, Dynamics and Systems Design to the control logic and manipulation. Additionally, a **Multi-body-dynamics** approach has been chosen **over the traditional Robotics approaches** (Such as D-H (Denavit-Hartenberg Mapping) and Parameters)). A *Computirized* derivation has been encouraged and appreciated in this project (Formerly, most projects focus on **Hand Derivations for the entire mechanism** earlier and treating the program built in MATLAB or Python or equivalent programming languages just as a calculator/solver. One of the major goals of the project is to appreciate the Symbolic Derivations performed purely by the MBD programs in this project). 
+
+## A humble note to the reader 
+*This repository has been created as a part of showing my self learning journey and my deep interest in Robotics in the view of Dynamics and Control. Even though I ensure that all the modelling is consistent with the Traditional ones and existing data, there may be mistakes involved. If any mistake has been spotted, you can very well correct me (as I consider corrections as a way for me to learn something) by submitting a Pull Request* 
 
 # Required Modules 
 Before running the simulation, ensure that the following modules have been set up. 
@@ -56,10 +59,10 @@ The results of the FK have been presented as well for the first commit.
 
 Without the considerations of Trajectory Planning and Trajectory Tracking, we can formulate our Inverse Kinematics Equations **Just using positions**. In such an approach, **considerations for the Jacobians** _explicitly_ (reasons provided as follows) is **NOT** essential.  
 
-## Idea of Inverse Kinematics (Without Explicitly using Jacobians)-P2P IK
+## Idea of Inverse Kinematics
 
 The modelling proposed here sometimes is also called a P2P IK. 
-In Forward Kinemtics, our goal is to **obtain the position of the end effector in space** as the angle of the joints, change w.r.t space. In Inverse Kinematics, our idea is to **find the angle of joints ($q_1, q_2$)** for a **given end-effector position**. 
+In Forward Kinemtics, our goal is to **obtain the position of the end effector in space** as the angle of the joints, change w.r.t space. In Inverse Kinematics, our idea is to **find the angle of joints ($q_1, q_2$)** for a **given end-effector position**. In this space, we're assessing the various Poses of the Manipulator for **Different** End effector Positions.
 Hence we have to solve $f_h$. Which is:  
 
 $$
@@ -80,7 +83,8 @@ l_1+l_2 &= \text{max end effector position} &= 1+1.2 &= 2.2m
 \end{aligned}
 $$
 
-And so, physically it'd be illogical for the links to reach anywhere beyond it. So the limits of $x_e, y_e$ can be determined as:
+And so, physically it'd be illogical for the links to reach anywhere beyond it. So the limits of $x_e, y_e$ can be determined as:  
+
 $$
 \begin{aligned}
 \sqrt{x_e^2+y_e^2} &= 2.2 &= \phi(x,y)
@@ -97,7 +101,9 @@ $$
 
 The results from the P2P IK have also been documented. 
 
-# C3: Inverse Kinematics (IK) (With Trajectory Tracking)
+# C3: Inverse Kinematics (IK) (Differential)
+
+In this section, I present my work and findings by **Explicitly Specifying** a Trajectory of the end effector. Here, the considerations of **Motion Planning** (involving obstacle mapping) and **Trajectory Generation** is NOT involved. This is because, Inverse Kinematics or Direct Kinematics or anything related to Mechanics, is **Independant** of Motion Planning if a trajectory already exists.  
 
 Say a robot is confined to a specific policy, say to move along a Straight line or move along a specific curved path or say a Velocity constraint is been **effected** with the **End Effector**, in all these cases, various constraints would have to be effected in the Kinematics Equations. Mind that, Kinematics comprises of both **Position Analysis** and **Velocity Analysis** (and further analysis of derived Kinematics Quantities such as Jerks, Accelerations). Hence the **Path of the end effector** can be affected by other Kinematic Quantities as well. 
 ## Trajectory Planning/Tracking 
@@ -123,7 +129,7 @@ $$
 Hence the DOF of the mechanism **Reduces to 1**. Hence for our control/generalized speeds to be solved for, we introduce $\dot{q_1}$ as our independent variable. This also means, the **end effector's velocity magnitude CANNOT** be of our choice. Only the motion path is under our control.  
 An alternate way of addressing is, I can set my $\vec{v}_e^N$. But that would mean, $\dot{q}_1$ and $\dot{q}_2$ now are **DEPENDANT** on $\vec{v}_e^N$. So, here we choose the 2nd choice of fixing, Ve. Hence we formulate this for our robotic system. The equations and Numerical Procedure have been well explained in the notebook. 
 
-## Results of the Trajectory planning: 
+## Results of the Differential IK: 
 <div align="center">
   <img width="862" height="833" alt="image" src="https://github.com/user-attachments/assets/ac45ccd3-3706-455d-91a4-52c205e825d6" alt="Two-link robotic manipulator mechanism" width="550">
   <br>
@@ -138,10 +144,38 @@ An alternate way of addressing is, I can set my $\vec{v}_e^N$. But that would me
 
 >[NOTE]
 >For this analysis, we have changed the link lengths, so as to not involve too much of Singularities and other issues due to Singularities. 
+# Trajectory Quality Analysis
+For any given trajectory (and yes this is not just restricted to a 2R Manipulator but for any Mechanism) we generally expect the following: 
+-- Jerk to be less (as much low as possible without much of sudden peaks in the plots or steep graphs) 
+-- Smooth Acceleration (without discontinuities) profiles
+-- Smooth Velocity Profiles (without discontinuities and sudden peaks, as its effects will be observed on the life of the Actuators involved). 
+
+<div align="center">
+  <img width="1256" height="837" alt="image" src="https://github.com/user-attachments/assets/cdc6427c-47cf-40e1-81fd-4ebd650ff270" />
+  <br>
+  <blockquote><b>Fig. 4</b> — <i>Trajectory Quality Analysis.</i></blockquote>
+</div>
+Here, we map the velocities and accelerations with the angular velocities and accelerations of the links. Its fascinating and interesting to observe the fact that even though there is a sudden jerk which is observed in the plots for the link-1, its effects seem to be minimized with the end effector link. The acceleration plots can directly imply the jerks (as per the definition of a jerk) and its continuous for both the links. The trajectory's quality can be attributed to the **Continuities** of the curve (Mathematically sometimes called as the C0, C1, C2 continuities of the curve). For the given policy and for the given **Configuration**, we can say that this is a "Good" trajectory for the end-effector. 
+
+# Dynamics of the mechanism
+To fine tune any control, we need the respective **Torques** and **Forces** from the Dynamics modelling. Here, instead of a **Lagrangian Mechanics**, we've used am extension from the **Newton-Eulerian** mechanics. Briefly all of these formulations have been discussed in the notebook. We've not particularly considered any forces (as its not required in here), but we've primarily considered Euler's Equations of Motion. The FBD (Free-Body-Diagram) of the object has been presented below: 
+<div align="center">
+  <img width="341" height="357" alt="image" src="https://github.com/user-attachments/assets/4b4f3b04-11c5-4236-94f0-219e92ef765e" />
+
+  <br>
+  <blockquote><b>Fig. 5</b> — <i>Free-Body-Diagram.</i></blockquote>
+</div>
+(All these are mapped with considerations of Newton's 3rd law and considerations of Pin/Revolute Joints). In the modelling, we have modelled the links as a rigid rod and hence their **Moments of Inertia** is chosen accordingly in the model. The combined Kinematics and Dynamics results of the torque variation is plotted and shown below. (Considering the link Lengths to be L1=L2=10m). 
+<div align="center">
+<img width="1262" height="1221" alt="D" src="https://github.com/user-attachments/assets/2b14a41b-a3e0-4fd0-a3db-c6b3394d5d5e" />
+  <br>
+  <blockquote><b>Fig. 6</b> — <i>Multi-Body-Dynamics analysis</i></blockquote>
+</div>
+The direct implications in the Angular Acceleration can be directly observed in the torques as well. Its due to the fact that the equations' modelling have been done **about the links' respectve COM (Center of Masses)** and due to which, the effect of gravity is primarily eliminated in the Euler's Equations. 
 
 # Pending Work
+- Tuning Methods of Dynamics with Control
 - Motion Planning
-- Dynamics of the mechanism
 - Integration with the hardware 
 
 
