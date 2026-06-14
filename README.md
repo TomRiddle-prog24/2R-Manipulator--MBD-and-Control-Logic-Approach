@@ -158,7 +158,7 @@ For any given trajectory (and yes this is not just restricted to a 2R Manipulato
 Here, we map the velocities and accelerations with the angular velocities and accelerations of the links. Its fascinating and interesting to observe the fact that even though there is a sudden jerk which is observed in the plots for the link-1, its effects seem to be minimized with the end effector link. The acceleration plots can directly imply the jerks (as per the definition of a jerk) and its continuous for both the links. The trajectory's quality can be attributed to the **Continuities** of the curve (Mathematically sometimes called as the C0, C1, C2 continuities of the curve). For the given policy and for the given **Configuration**, we can say that this is a "Good" trajectory for the end-effector. 
 
 # Dynamics of the mechanism
-To fine tune any control, we need the respective **Torques** and **Forces** from the Dynamics modelling. Here, instead of a **Lagrangian Mechanics**, we've used am extension from the **Newton-Eulerian** mechanics. Briefly all of these formulations have been discussed in the notebook. We've not particularly considered any forces (as its not required in here), but we've primarily considered Euler's Equations of Motion. The FBD (Free-Body-Diagram) of the object has been presented below: 
+To fine tune any control, we need the respective **Torques** and **Forces** from the Dynamics modelling. Here, instead of a **Lagrangian Mechanics**, we've used am extension from the **Newton-Eulerian** mechanics. Briefly all of these formulations have been discussed in the notebook. As of this current model we do not consider Gravity at all for Torque Calculations. (Its an Ideal model). However, **the Kinematics results are VALID** even for the Ideal scenarios (as Kinematics doesnt care if the modelling is done with or without gravity. It only considers the physical geometry of the mechanism). The FBD (Free-Body-Diagram) of the object has been presented below: 
 <div align="center">
   <img width="341" height="357" alt="image" src="https://github.com/user-attachments/assets/4b4f3b04-11c5-4236-94f0-219e92ef765e" />
 
@@ -171,7 +171,7 @@ To fine tune any control, we need the respective **Torques** and **Forces** from
   <br>
   <blockquote><b>Fig. 6</b> — <i>Multi-Body-Dynamics analysis</i></blockquote>
 </div>
-The direct implications in the Angular Acceleration can be directly observed in the torques as well. Its due to the fact that the equations' modelling have been done **about the links' respectve COM (Center of Masses)** and due to which, the effect of gravity is primarily eliminated in the Euler's Equations. 
+
 
 # Pending Work
 - Tuning Methods of Dynamics with Control
