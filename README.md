@@ -25,7 +25,7 @@ ilt.rcParams['animation.embed_limit'] = 50.0          #For the animation to be f
 Forward Kinematics: In any Mechanical Mechanism, we refer to FK as an **analysis** that **determines** the position of the **End-Effector (EF)** for a given set of Joint angles. Since the robot's DOF=2, its obvious that the Joint angles (Defined $q_1, q_2$) is *independent* of each other. The definitions of the link lengths ($l_1, l_2$) has been attached here. 
 
 <div align="center">
-    <img src="https://github.com/user-attachments/assets/3bd69b3b-fc0f-4b2e-bcb4-1913ff1dcd24"  alt="Two-link robotic manipulator mechanism" width="550">
+    <img width="581" height="442" alt="image" src="https://github.com/user-attachments/assets/f9fb96f5-d4e9-4373-aa08-795bbe7a665a" />
   <br>
   <blockquote><b>Fig. 1</b> — <i>Description of the problem modeled for an FK Analysis.</i></blockquote>
 </div>
